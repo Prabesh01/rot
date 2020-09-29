@@ -1,0 +1,112 @@
+<form action="#">
+<input type="text" id="input" placeholder="input"></input>
+<input type="text" id="value" placeholder="compare/rot"></input>
+<button type="button" onclick="cipher() ">Operate</button>
+</form>
+
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<p id="output"/>
+
+
+
+<script>
+var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+function cipher(){
+var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+ var input = $('#input').val(); 
+  var value = $('#value').val();
+ if(value === ""){
+if(isNaN(Number(input))){
+    if (input.length != input.replace(" ", "").length) { 
+        str = JSON.stringify(input, null, 4);
+var res = str.split(' ');
+ for (var i = 1; i < res.length-1; i++) {
+var inpt = res[i];
+     if(inpt>26){
+do{
+    inpt -=26;
+}
+ while (inpt > 26); 
+     }
+var intp=alphabet[inpt-1];
+document.write(intp);
+}
+    }else{
+      for (var i = 0; i < input.length; i++) {
+         var outp = input.charAt(i);
+        var letterPosition = alphabet.indexOf(outp)+1;
+        document.write(letterPosition+" ");
+  }}}else{
+        if(input<27){
+    document.getElementById("output").innerHTML = alphabet[input-1];
+    }else if(input>26){
+do{
+    input -=26;
+}
+ while (input > 26); 
+
+       document.getElementById("output").innerHTML = alphabet[input-1];
+
+    
+    }else{
+            alert('ok');
+    }
+    
+    }
+
+}else{
+if(isNaN(Number(value))){
+      
+        var letterPosition = alphabet.indexOf(input)+1;
+        var letterPositionn = alphabet.indexOf(value)+1;
+        alert(letterPosition-letterPositionn);
+ }else{
+      if(value==0){
+        for (var i = 0; i < 27; i++) {
+        document.write("<b>ROT-"+i+":</b> ");
+ok(input, i);
+document.write('<br>');
+    } 
+      }else{
+      for (var i = 0; i < input.length; i++) {
+         var outp = input.charAt(i);
+        var letterPosition = alphabet.indexOf(outp)+1;
+      letterPosition +=eval(value);
+       if(letterPosition>26){
+        do{
+        letterPosition -=26;
+        }while (letterPosition > 26);
+}
+       if(letterPosition<1){
+        do{
+        letterPosition +=26;
+        }while (letterPosition < 1);
+}
+      letterPosition=alphabet[letterPosition-1];
+        document.write(letterPosition+" ");
+  }
+  }}
+}
+}
+</script>
+<script>
+    var ok = function(input, value){
+          for (var i = 0; i < input.length; i++) {
+             var outp = input.charAt(i);
+            var letterPosition = alphabet.indexOf(outp)+1;
+          letterPosition +=eval(value);
+           if(letterPosition>26){
+            do{
+            letterPosition -=26;
+            }while (letterPosition > 26);
+    }
+           if(letterPosition<1){
+            do{
+            letterPosition +=26;
+            }while (letterPosition < 1);
+    }
+          letterPosition=alphabet[letterPosition-1];
+            document.write(letterPosition+" ");
+      }
+    }
+    </script>
